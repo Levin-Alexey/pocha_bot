@@ -100,7 +100,47 @@ def callback_inline(call):
         keyboard_kolomna1.add(backbutton)
         bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете поставщика",reply_markup=keyboard_kolomna1)
 
+    elif call.data == "kolomna1_kom":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_kolomna1_kom = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="kolomna1")
+        keyboard_kolomna1_kom.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="МОЕ: - 1,68% мин 25р.\nАО Мосэнергосбыт - 2,44% мин 25 руб (внешняя)\nАО Мособлгаз - 2,5 % мин 25 руб (внешняя)\nГИБДД - 2,54% (внешняя), мин 25 руб.\nРостелеком - ГОПС 2,5 % мин. 10 руб. (внешняя), СОПС 4,1 % (внутренняя)\nСотовая связь - 6,4% (внешняя ) мин 10 руб. Прием в ФСГ и на МПКТ\n",reply_markup=keyboard_kolomna1_kom)
 
+
+    elif call.data == "kolomna1_kon_kom":
+        keyboard_kolomna1_kon_kom = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Сбербанк", callback_data="sber_kolomna1")
+        keyboard_kolomna1_kon_kom.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="МОЕ", callback_data="moe_kolomna1")
+        keyboard_kolomna1_kon_kom.add(rele2)
+        rele3 = types.InlineKeyboardButton(text="ВТБ", callback_data="vtb_kolomna1")
+        keyboard_kolomna1_kon_kom.add(rele3)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="kolomna1")
+        keyboard_kolomna1_kon_kom.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете конкурента",reply_markup=keyboard_kolomna1_kon_kom)
+
+    elif call.data == "sber_kolomna1":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_sber_kolomna1 = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="kolomna1")
+        keyboard_sber_kolomna1.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nПАО Сбербанк (Оплату принимают и наличными в кассе, в банкоматах и терминалах. 11 офисов 29 терминалов/банкоматов)\nКомиссия при оплате наличными в кассе:\nМОЕ - Без комиссии.\nСвет - 3%  не менее 25 руб.\nГаз - 3%  не менее 50 руб.\nГИБДД - 3%  не менее 50 руб.\nРостелеком - 2,5 %  не менее 10 руб.\nСотовая связь -  не принимают.\nКомиссия при оплате в терминале, банкомате картой и на кассе:\n МОЕ - Без комиссии.\nСвет - 1%\nГаз - 1%.\nГИБДД - 1,2% макс 500 руб.\nРостелеком - 1,2%.\nМобильная связь - Без комиссии.\n",reply_markup=keyboard_sber_kolomna1)
+
+
+    elif call.data == "moe_kolomna1":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_moe_kolomna1 = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="kolomna1")
+        keyboard3_moe_kolomna1.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (3 офиса 5 терминалов.)\n Оплата наличными в кассе\nОплата наличными всех поставщиков не принимается\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Без комиссии.\n Свет - 1%\nОплата всех других поставщиков не принимается\n",reply_markup=keyboard3_moe_kolomna1)
+
+    elif call.data == "vtb_kolomna1":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_vtb_kolomna1 = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="kolomna1")
+        keyboard3_vtb_kolomna1.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ВТБ ( 2 офиса 14 терминалов.)\n Наличные платежи не принимаются \nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Без комиссии.\nСвет - Без комиссии.\nГаз - Без комиссии.\nГИБДД - Без комиссии.\nРостелеком - Без комиссии.\nСотовая связь - Без комиссии\n",reply_markup=keyboard3_vtb_kolomna1)
 
 
 
@@ -138,7 +178,7 @@ def callback_inline(call):
         rele1 = types.InlineKeyboardButton(text="Сбербанк", callback_data="sber_serebro")
         keyboard_serebro_kon_kom.add(rele1)
         rele2 = types.InlineKeyboardButton(text="МОЕ", callback_data="moe_serebro")
-        keyboardserebro1_kon_kom.add(rele2)
+        keyboard_serebro_kon_kom.add(rele2)
         rele3 = types.InlineKeyboardButton(text="ВТБ", callback_data="vtb_serebro")
         keyboard_serebro_kon_kom.add(rele3)
         backbutton = types.InlineKeyboardButton(text="Назад", callback_data="serebro")
@@ -167,7 +207,7 @@ def callback_inline(call):
         keyboard3_moe_serebro = types.InlineKeyboardMarkup()
         button = types.InlineKeyboardButton(text="Назад", callback_data="serebro")
         keyboard3_moe_serebro.add(button)
-        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (1 офис 3 терминала.)\n Оплата наличными в кассе\nМОЕ - Без комиссии\nОплата наличными всех других поставщиков не принимается\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Без комиссии.\n Свет - 1%\nОплата всех других поставщиков не принимается\n",reply_markup=keyboard3_moe_serebro)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (1 офис 3 терминала.)\n Оплата наличными в кассе\nОплата наличными всех поставщиков не принимается\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Без комиссии.\n Свет - 1%\nОплата всех других поставщиков не принимается\n",reply_markup=keyboard3_moe_serebro)
 
     elif call.data == "kashira1":
         keyboard_kashira1 = types.InlineKeyboardMarkup()
