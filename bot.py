@@ -88,6 +88,58 @@ def callback_inline(call):
         keyboard_kras.add(backbutton)
         bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете район",reply_markup=keyboard_kras)
 
+    elif call.data == "volo":
+        keyboard_volo = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Комиссия почты", callback_data="volo_kom")
+        keyboard_volo.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="Комиссия конкурентов", callback_data="volo_kon_kom")
+        keyboard_volo.add(rele2)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="volo")
+        keyboardvoloa.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете поставщика",reply_markup=keyboard_volo)
+
+    elif call.data == "volo_kom":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_volo_kom = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="volo")
+        keyboard_volo_kom.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="МОЕ: - 1,68% мин 25р.\nАО Мосэнергосбыт - 2,44% мин 25 руб (внешняя)\nАО Мособлгаз - 2,5 % мин 25 руб (внешняя)\nГИБДД - 2,54% (внешняя), мин 25 руб.\nРостелеком - ГОПС 2,5 % мин. 10 руб. (внешняя), СОПС 4,1 % (внутренняя)\nСотовая связь - 6,4% (внешняя ) мин 10 руб. Прием в ФСГ и на МПКТ\n",reply_markup=keyboard_volo_kom)
+
+    elif call.data == "volo_kon_kom":
+        keyboard_volo_kon_kom = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Сбербанк", callback_data="sber_volo")
+        keyboard_volo_kon_kom.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="МОЕ", callback_data="moe_volo")
+        keyboard_volo_kon_kom.add(rele2)
+        rele3 = types.InlineKeyboardButton(text="ВТБ", callback_data="vtb_volo")
+        keyboard_volo_kon_kom.add(rele3)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="volo")
+        keyboard_volo_kon_kom.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Выберете конкурента", reply_markup=keyboard_volo_kon_kom)
+
+
+    elif call.data == "moe_volo":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_moe_volo = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="volo")
+        keyboard3_moe_volo.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (1 офис 1 касса.)\n Принимается оплата наличными МОЕ - 1,8%, по карте 1,5%. Все остальные платежи не принимаются\n",reply_markup=keyboard3_moe_volo)
+
+    elif call.data == "vtb_volo":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_vtb_volo = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="volo")
+        keyboard3_vtb_volo.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ВТБ (1 офиса 3 банкомата.)\n Под какой % принимают платежи  наличными в кассе. \nПлатежи наличными не принимаются\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nСвет - 1,5 % (min 200 руб. max 3000 руб.), по карте. \nГаз - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nГИБДД - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nРостелеком - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nСотовая связь - 1,5 % (min 200 руб. max 3000 руб.), по карте\n",reply_markup=keyboard3_vtb_volo)
+
+    elif call.data == "sber_volo":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_sber_volo = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="istra")
+        keyboard_sber_volo.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nПАО Сбербанк (Оплату принимают и наличными в кассе, в банкоматах и терминалах. 1 офис 6 банкоматов/терминалов)\nКомиссия при оплате наличными в кассе:\nМОЕ - 3%  не менее 50 руб. мах 5000 руб.\nСвет - 3%  не менее 25 руб.\nГаз - 3%  не менее 50 руб.\nГИБДД - 3%  не менее 50 руб.\nРостелеком - 2,5 %  не менее 10 руб.\nСотовая связь - 2,5 %  не менее 10 руб.\nКомиссия при оплате в терминале, банкомате картой и на кассе:\n МОЕ -  с карты банка 1,2%,мах. 500 руб. наличными в терминале 2%(мин.10 руб. мах 2000).\nСвет -  с карты банка 1,2%,мах. 500 руб. наличными в терминале 2%(мин.10 руб. мах 2000).\nГаз -  с карты банка 1,2%,мах. 500 руб. наличными в терминале 2%(мин.10 руб. мах 2000).\nГИБДД - оплата картой1.2 %, мах 500 руб. наличными в терминале 2%, мин. 10 руб, мах 2000 руб.\nРостелеком - оплата по карте банка 1.2% мах. 500 руб. наличными в терминале 3 %(мин. 10 руб. мах 2000 руб.).\nМобильная связь - оплата по карте банка 1.2% мах. 500 руб. наличными в терминале 3 %(мин. 10 руб. мах 2000 руб.)\n",reply_markup=keyboard_sber_volo)
+
+
     elif call.data == "istra":
         keyboard_istra = types.InlineKeyboardMarkup()
         rele1 = types.InlineKeyboardButton(text="Комиссия почты", callback_data="istra_kom")
@@ -97,6 +149,8 @@ def callback_inline(call):
         backbutton = types.InlineKeyboardButton(text="Назад", callback_data="istra")
         keyboard_istra.add(backbutton)
         bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете поставщика",reply_markup=keyboard_istra)
+
+
 
     elif call.data == "istra_kom":
         bot.answer_callback_query(callback_query_id=call.id)
@@ -119,6 +173,36 @@ def callback_inline(call):
         keyboard_istra_kon_kom.add(backbutton)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Выберете конкурента", reply_markup=keyboard_istra_kon_kom)
 
+    elif call.data == "unis_istra":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_unis_istra = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="istra")
+        keyboard3_unis_istra.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ВТБ (1 офис 4 терминала)\n Под какой % принимают платежи  наличными в кассе. \nМОЕ - 0,9 %, мин. 49 руб.\n Свет - 0,9 %, мин. 49 руб.\n Газ - 0,9 %, мин. 49 руб.\n ГИБДД - 0,9 %, мин. 49 руб.\nРостелеком - 1% мин.10 руб.\nМобильная связь - 1% мин.10 руб.\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Терминалы МКБ  находится в офисе МОЕ принимают под  1, 5%.\nСвет - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%. \nГаз - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%.\nГИБДД - Терминалы МКБ  находится в офисе МОЕ принимают под 1,5%.\nРостелеком - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%.\nСотовая связь - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%.\n",reply_markup=keyboard3_unis_istra)
+
+
+
+    elif call.data == "sber_istra":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_sber_istra = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="istra")
+        keyboard_sber_istra.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nПАО Сбербанк (Оплату принимают и наличными в кассе, в банкоматах и терминалах. 2 офисов 10 банкомата/терминала)\nКомиссия при оплате наличными в кассе:\nМОЕ - 3%  не менее 50 руб. мах 5000 руб.\nСвет - 3%  не менее 25 руб.\nГаз - 3%  не менее 50 руб.\nГИБДД - 3%  не менее 50 руб.\nРостелеком - 2,5 %  не менее 10 руб.\nСотовая связь - 2,5 %  не менее 10 руб.\nКомиссия при оплате в терминале, банкомате картой и на кассе:\n МОЕ -  с карты банка 1,2%,мах. 500 руб. наличными в терминале 2%(мин.10 руб. мах 2000).\nСвет -  с карты банка 1,2%,мах. 500 руб. наличными в терминале 2%(мин.10 руб. мах 2000).\nГаз -  с карты банка 1,2%,мах. 500 руб. наличными в терминале 2%(мин.10 руб. мах 2000).\nГИБДД - оплата картой1.2 %, мах 500 руб. наличными в терминале 2%, мин. 10 руб, мах 2000 руб.\nРостелеком - оплата по карте банка 1.2% мах. 500 руб. наличными в терминале 3 %(мин. 10 руб. мах 2000 руб.).\nМобильная связь - оплата по карте банка 1.2% мах. 500 руб. наличными в терминале 3 %(мин. 10 руб. мах 2000 руб.)\n",reply_markup=keyboard_sber_istra)
+
+
+    elif call.data == "vtb_istra":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_vtb_istra = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="istra")
+        keyboard3_vtb_istra.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ВТБ (1 офиса 10 банкоматов.)\n Под какой % принимают платежи  наличными в кассе. \nПлатежи наличными не принимаются\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nСвет - 1,5 % (min 200 руб. max 3000 руб.), по карте. \nГаз - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nГИБДД - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nРостелеком - 1,5 % (min 200 руб. max 3000 руб.), по карте.\nСотовая связь - 1,5 % (min 200 руб. max 3000 руб.), по карте\n",reply_markup=keyboard3_vtb_istra)
+
+    elif call.data == "moe_istra":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_moe_istra = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="istra")
+        keyboard3_moe_istra.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (1 офис 1 терминал.)\n Оплата наличными в кассе\nОплата наличными всех поставщиков не принимается\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Терминалы МКБ  находится в офисе МОЕ принимают под  1, 5%.\nСВЕТ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nГАЗ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\n ГИБДД - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nРостелеком - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nСотовая связь - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\n",reply_markup=keyboard3_moe_istra)
 
 
 
@@ -172,7 +256,7 @@ def callback_inline(call):
         keyboard3_moe_kras1 = types.InlineKeyboardMarkup()
         button = types.InlineKeyboardButton(text="Назад", callback_data="kras1")
         keyboard3_moe_kras1.add(button)
-        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (2 офиса 2 терминала.)\n Оплата наличными в кассе\nОплата наличными всех поставщиков не принимается\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%.\nСВЕТ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nГАЗ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\n ГИБДД - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\n Ростелеком - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nСотовая связь - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%",reply_markup=keyboard3_moe_kras1)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (2 офиса 2 терминала.)\n Оплата наличными в кассе\nОплата наличными всех поставщиков не принимается\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%.\nСВЕТ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nГАЗ - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\n ГИБДД - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nРостелеком - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\nСотовая связь - Терминалы МКБ  находится в офисе МОЕ принимают под  1,5%\n",reply_markup=keyboard3_moe_kras1)
 
 
 
