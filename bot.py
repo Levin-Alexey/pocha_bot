@@ -22,7 +22,7 @@ def any_msg(message):
     keyboardmain.add(button7)
     button8 = types.InlineKeyboardButton(text="Люберцы", callback_data="luber")
     keyboardmain.add(button8)
-    button9 = types.InlineKeyboardButton(text="Мытищи", callback_data="balashiha")
+    button9 = types.InlineKeyboardButton(text="Мытищи", callback_data="mitishi")
     keyboardmain.add(button9)
     button10 = types.InlineKeyboardButton(text="Наро - Фоминск", callback_data="balashiha")
     keyboardmain.add(button10)
@@ -58,7 +58,7 @@ def callback_inline(call):
         keyboardmain.add(button7)
         button8 = types.InlineKeyboardButton(text="Люберцы", callback_data="luber")
         keyboardmain.add(button8)
-        button9 = types.InlineKeyboardButton(text="Мытищи", callback_data="balashiha")
+        button9 = types.InlineKeyboardButton(text="Мытищи", callback_data="mitishi")
         keyboardmain.add(button9)
         button10 = types.InlineKeyboardButton(text="Наро - Фоминск", callback_data="balashiha")
         keyboardmain.add(button10)
@@ -73,6 +73,203 @@ def callback_inline(call):
         button15 = types.InlineKeyboardButton(text="Химки", callback_data="balashiha")
         keyboardmain.add(button15)
         bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете Ваш почтамт",reply_markup=keyboardmain)
+
+
+
+    if call.data == "mitishi":
+        keyboard_mitishi = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Мытищи и район", callback_data="mitishi1")
+        keyboard_mitishi.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="Щелково и район", callback_data="shelk")
+        keyboard_mitishi.add(rele2)
+        rele3 = types.InlineKeyboardButton(text="Королев", callback_data="korol")
+        keyboard_mitishi.add(rele3)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="mainmenu")
+        keyboard_mitishi.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете район",reply_markup=keyboard_mitishi)
+
+    elif call.data == "korol":
+        keyboard_korol = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Комиссия почты", callback_data="korol_kom")
+        keyboard_korol.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="Комиссия конкурентов", callback_data="korol_kon_kom")
+        keyboard_korol.add(rele2)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="korol")
+        keyboardvoloa.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете поставщика",reply_markup=keyboard_korol)
+
+
+    elif call.data == "korol_kom":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_korol_kom = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="korol")
+        keyboard_korol_kom.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="МОЕ: - 1,68% мин 25р.\nАО Мосэнергосбыт - 2,44% мин 25 руб (внешняя)\nАО Мособлгаз - 2,5 % мин 25 руб (внешняя)\nГИБДД - 2,54% (внешняя), мин 25 руб.\nРостелеком - ГОПС 2,5 % мин. 10 руб. (внешняя), СОПС 4,1 % (внутренняя)\nСотовая связь - 6,4% (внешняя ) мин 10 руб. Прием в ФСГ и на МПКТ\n",reply_markup=keyboard_korol_kom)
+
+    elif call.data == "korol_kon_kom":
+        keyboard_korol_kon_kom = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Сбербанк", callback_data="sber_korol")
+        keyboard_korol_kon_kom.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="МОЕ", callback_data="moe_korol")
+        keyboard_korol_kon_kom.add(rele2)
+        rele3 = types.InlineKeyboardButton(text="ВТБ", callback_data="vtb_korol")
+        keyboard_korol_kon_kom.add(rele3)
+        rele3 = types.InlineKeyboardButton(text="ЕСГП", callback_data="esgp_korol")
+        keyboard_korol_kon_kom.add(rele3)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="korol")
+        keyboard_korol_kon_kom.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Выберете конкурента", reply_markup=keyboard_korol_kon_kom)
+
+    elif call.data == "vtb_korol":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_vtb_korol = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="mitkorol_kon_kom")
+        keyboard3_vtb_korol.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ВТБ (7 офисjd 9 банкоматов.)\n Под какой % принимают платежи  наличными в кассе. \nМОЕ - 1.5%, мin 200, мах 3000 руб.\nСвет - 1.5%, мin 200, мах 3000 руб\nГИБДД - 2% мин 75 руб.\nРостелеком - 1.5%, мin 200, мах 3000 руб\nСотовая связь - не принимается.\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - терминал без %, картой сторонего банка 2% мин 20 руб.\nСвет - терминал без %, картой сторонего банка 2% мин 20 руб. \nГаз - терминал без %, картой ст банка 2% мин 20 руб.\nГИБДД - 4% наличными в терминале, картой банка без %.\nРостелеком - терминал без %, картой сторонего банка 2% мин 20 руб.\nСотовая связь - без %\n",reply_markup=keyboard3_vtb_korol)
+
+    elif call.data == "sber_korol":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_sber_korol = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="korol")
+        keyboard_sber_korol.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nПАО Сбербанк (Оплату принимают и наличными в кассе, в банкоматах и терминалах. 14 офисов 30 банкоматов/терминалов)\nКомиссия при оплате наличными в кассе:\nМОЕ - Расчетный счет 6799-3% не менее 50 руб. и не более 2500 руб., Расчетный счет 6635-0%.\nСвет - Наличными: 3%  не менее 25 руб., картой: 2,5%, не менее 50 руб.\nГаз - Наличными: 3%  не менее 50 руб., Картой: 2,5, не менее 50 руб.\nГИБДД - 3%  не менее 50 руб.\nРостелеком - Наличными: 2,5 %  не менее 10 руб. Картой: 2%, не менее 10р, max 1500р.\nСотовая связь - не принимают.\nКомиссия при оплате в терминале, банкомате картой и на кассе:\n МОЕ - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1,2%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 0,5% онлайн и мобильный банк, оплата р/с 6635 везде без %.\nСвет -  2,5% на окне картой мин 25 руб.// 1,5%  мин 10 руб. налич в терминале// 1,0 % картой в терминале.\nГаз - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 1% онлайн и мобильный банк.\nГИБДД - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 1% онлайн и мобильный банк.\nРостелеком - 2,5% не менее 10 руб картой на окне/ 3%  мин 10,00 нал в терминале/ без %  картой в терминале.\nМобильная связь - 2,5% наличными через терминал, без % по карте банка.\n",reply_markup=keyboard_sber_korol)
+
+    elif call.data == "moe_korol":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_moe_korol = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data=korol)
+        keyboard3_moe_korol.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (1 офис, 31 терминал)\nОплата наличными не принимается\nПод какой % принимают банкоматы, терминалы/ оплата в офисе картой\nМОЕ - Расчетный счет 6799-0,99%, Расчетный счет 6635-0%\nСвет - 1%\nГаз- не принимают\nГИБДД -3% не менее 30 руб.\nРостелеком - до 99 руб. - 4,99 руб., от 100 руб -499% Мобильный Ростелеком: до 99 руб. - 4,99 руб., от 100 руб. - 4,99%\nМобильная связь - Наличными и картой: до 10 руб. - 5 руб., от 11 до 99 руб. - 5,99 руб., от 100 руб. - 5,99%\n",reply_markup=keyboard3_moe_korol)
+
+
+    elif call.data == "esgp_korol":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_esgp_korol = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data=korol)
+        keyboard3_esgp_korol.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (80 терминалов в городе Королев)\nОплата наличными не принимается\nПод какой % принимают банкоматы, терминалы/ оплата в офисе картой\nМОЕ - 1,59%\nСвет - 1,5%\nГаз- 1,5%\nГИБДД -не принимают\nРостелеком - 1%\nМобильная связь - 5%\n",reply_markup=keyboard3_esgp_korol)
+
+
+
+
+
+
+    elif call.data == "shelk":
+        keyboard_shelk = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Комиссия почты", callback_data="shelk_kom")
+        keyboard_shelk.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="Комиссия конкурентов", callback_data="shelk_kon_kom")
+        keyboard_shelk.add(rele2)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="shelk")
+        keyboardvoloa.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете поставщика",reply_markup=keyboard_shelk)
+
+    elif call.data == "shelk_kom":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_shelk_kom = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="shelk")
+        keyboard_shelk_kom.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="МОЕ: - 1,68% мин 25р.\nАО Мосэнергосбыт - 2,44% мин 25 руб (внешняя)\nАО Мособлгаз - 2,5 % мин 25 руб (внешняя)\nГИБДД - 2,54% (внешняя), мин 25 руб.\nРостелеком - ГОПС 2,5 % мин. 10 руб. (внешняя), СОПС 4,1 % (внутренняя)\nСотовая связь - 6,4% (внешняя ) мин 10 руб. Прием в ФСГ и на МПКТ\n",reply_markup=keyboard_shelk_kom)
+
+    elif call.data == "shelk_kon_kom":
+        keyboard_shelk_kon_kom = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Сбербанк", callback_data="sber_shelk")
+        keyboard_shelk_kon_kom.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="МОЕ", callback_data="moe_shelk")
+        keyboard_shelk_kon_kom.add(rele2)
+        rele3 = types.InlineKeyboardButton(text="ВТБ", callback_data="vtb_shelk")
+        keyboard_shelk_kon_kom.add(rele3)
+        rele3 = types.InlineKeyboardButton(text="ООО КП", callback_data="kp_shelk")
+        keyboard_shelk_kon_kom.add(rele3)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="shelk")
+        keyboard_shelk_kon_kom.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Выберете конкурента", reply_markup=keyboard_shelk_kon_kom)
+
+    elif call.data == "vtb_shelk":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_vtb_shelk = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="mitishi1_kon_kom")
+        keyboard3_vtb_shelk.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ВТБ (4 офиса 19 банкоматов.)\n Под какой % принимают платежи  наличными в кассе. \nМОЕ - 1.5%, мin 200, мах 3000 руб.\nСвет - 1.5%, мin 200, мах 3000 руб\nГИБДД - 2% мин 75 руб.\nРостелеком - 1.5%, мin 200, мах 3000 руб\nСотовая связь - не принимается.\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - терминал без %, картой сторонего банка 2% мин 20 руб.\nСвет - терминал без %, картой сторонего банка 2% мин 20 руб. \nГаз - терминал без %, картой ст банка 2% мин 20 руб.\nГИБДД - 4% наличными в терминале, картой банка без %.\nРостелеком - терминал без %, картой сторонего банка 2% мин 20 руб.\nСотовая связь - без %\n",reply_markup=keyboard3_vtb_shelk)
+
+    elif call.data == "sber_shelk":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_sber_shelk = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="shelk")
+        keyboard_sber_shelk.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nПАО Сбербанк (Оплату принимают и наличными в кассе, в банкоматах и терминалах. 16 офисов 36 банкоматов/терминалов)\nКомиссия при оплате наличными в кассе:\nМОЕ - Расчетный счет 6799-3% не менее 50 руб. и не более 2500 руб., Расчетный счет 6635-0%.\nСвет - Наличными: 3%  не менее 25 руб., картой: 2,5%, не менее 50 руб.\nГаз - Наличными: 3%  не менее 50 руб., Картой: 2,5, не менее 50 руб.\nГИБДД - 3%  не менее 50 руб.\nРостелеком - Наличными: 2,5 %  не менее 10 руб. Картой: 2%, не менее 10р, max 1500р.\nСотовая связь - не принимают.\nКомиссия при оплате в терминале, банкомате картой и на кассе:\n МОЕ - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1,2%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 0,5% онлайн и мобильный банк, оплата р/с 6635 везде без %.\nСвет -  2,5% на окне картой мин 25 руб.// 1,5%  мин 10 руб. налич в терминале// 1,0 % картой в терминале.\nГаз - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 1% онлайн и мобильный банк.\nГИБДД - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 1% онлайн и мобильный банк.\nРостелеком - 2,5% не менее 10 руб картой на окне/ 3%  мин 10,00 нал в терминале/ без %  картой в терминале.\nМобильная связь - 2,5% наличными через терминал, без % по карте банка.\n",reply_markup=keyboard_sber_shelk)
+
+    elif call.data == "moe_shelk":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_moe_shelk = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data=shelk)
+        keyboard3_moe_shelk.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (4 офиса.)\nРасчетный счет 6799-1,5%, Расчетный счет 6635-0%. Оплата наличными других поставщиков не принимается\nПод какой % принимают банкоматы, терминалы/ оплата в офисе картой\nМОЕ - 1,5%\nСвет - 1%\nГаз- не принимают\nГИБДД -3% не менее 30 руб.\nРостелеком - до 99 руб. - 4,99 руб., от 100 руб -499% Мобильный Ростелеком: до 99 руб. - 4,99 руб., от 100 руб. - 4,99%\nМобильная связь - Наличными и картой: до 10 руб. - 5 руб., от 11 до 99 руб. - 5,99 руб., от 100 руб. - 5,99%\n",reply_markup=keyboard3_moe_shelk)
+
+    elif call.data == "kp_shelk":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_kp_shelk = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data=shelk)
+        keyboard3_kp_shelk.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ООО КП (1 касса.)\nПод какой % принимают платежи  наличными в кассе\nМОЕ - 3,1%\nСвет - 3,1%\nГаз - 3,1%\n Платежи на остальных поставщиков не принимаются. Оплаты картой нет.",reply_markup=keyboard3_kp_shelk)
+
+
+
+    elif call.data == "mitishi1":
+        keyboard_mitishi1 = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Комиссия почты", callback_data="mitishi1_kom")
+        keyboard_mitishi1.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="Комиссия конкурентов", callback_data="mitishi1_kon_kom")
+        keyboard_mitishi1.add(rele2)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="mitishi1")
+        keyboardvoloa.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="Выберете поставщика",reply_markup=keyboard_mitishi1)
+
+
+    elif call.data == "mitishi1_kom":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_mitishi1_kom = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="mitishi1")
+        keyboard_mitishi1_kom.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="МОЕ: - 1,68% мин 25р.\nАО Мосэнергосбыт - 2,44% мин 25 руб (внешняя)\nАО Мособлгаз - 2,5 % мин 25 руб (внешняя)\nГИБДД - 2,54% (внешняя), мин 25 руб.\nРостелеком - ГОПС 2,5 % мин. 10 руб. (внешняя), СОПС 4,1 % (внутренняя)\nСотовая связь - 6,4% (внешняя ) мин 10 руб. Прием в ФСГ и на МПКТ\n",reply_markup=keyboard_mitishi1_kom)
+
+    elif call.data == "mitishi1_kon_kom":
+        keyboard_mitishi1_kon_kom = types.InlineKeyboardMarkup()
+        rele1 = types.InlineKeyboardButton(text="Сбербанк", callback_data="sber_mitishi1")
+        keyboard_mitishi1_kon_kom.add(rele1)
+        rele2 = types.InlineKeyboardButton(text="МОЕ", callback_data="moe_mitishi1")
+        keyboard_mitishi1_kon_kom.add(rele2)
+        rele3 = types.InlineKeyboardButton(text="ВТБ", callback_data="vtb_mitishi1")
+        keyboard_mitishi1_kon_kom.add(rele3)
+        backbutton = types.InlineKeyboardButton(text="Назад", callback_data="mitishi1")
+        keyboard_mitishi1_kon_kom.add(backbutton)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Выберете конкурента", reply_markup=keyboard_mitishi1_kon_kom)
+
+    elif call.data == "vtb_mitishi1":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_vtb_mitishi1 = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="mitishi1_kon_kom")
+        keyboard3_vtb_mitishi1.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы ВТБ (3 офиса 13 банкоматов.)\n Под какой % принимают платежи  наличными в кассе. \nМОЕ - 1.5%, мin 200, мах 3000 руб.\nСвет - 1.5%, мin 200, мах 3000 руб\nГИБДД - 2% мин 75 руб.\nРостелеком - 1.5%, мin 200, мах 3000 руб\nСотовая связь - не принимается.\nОплата в банкомате, терминале/оплата в офисе картой: МОЕ - терминал без %, картой сторонего банка 2% мин 20 руб.\nСвет - терминал без %, картой сторонего банка 2% мин 20 руб. \nГаз - терминал без %, картой ст банка 2% мин 20 руб.\nГИБДД - 4% наличными в терминале, картой банка без %.\nРостелеком - терминал без %, картой сторонего банка 2% мин 20 руб.\nСотовая связь - без %\n",reply_markup=keyboard3_vtb_mitishi1)
+
+
+    elif call.data == "sber_mitishi1":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard_sber_mitishi1 = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data="mitishi1")
+        keyboard_sber_mitishi1.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nПАО Сбербанк (Оплату принимают и наличными в кассе, в банкоматах и терминалах. 16 офисов 67 банкоматов/терминалов)\nКомиссия при оплате наличными в кассе:\nМОЕ - Расчетный счет 6799-3% не менее 50 руб. и не более 2500 руб., Расчетный счет 6635-0%.\nСвет - Наличными: 3%  не менее 25 руб., картой: 2,5%, не менее 50 руб.\nГаз - Наличными: 3%  не менее 50 руб., Картой: 2,5, не менее 50 руб.\nГИБДД - 3%  не менее 50 руб.\nРостелеком - Наличными: 2,5 %  не менее 10 руб. Картой: 2%, не менее 10р, max 1500р.\nСотовая связь - не принимают.\nКомиссия при оплате в терминале, банкомате картой и на кассе:\n МОЕ - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1,2%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 0,5% онлайн и мобильный банк, оплата р/с 6635 везде без %.\nСвет -  2,5% на окне картой мин 25 руб.// 1,5%  мин 10 руб. налич в терминале// 1,0 % картой в терминале.\nГаз - Н2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 1% онлайн и мобильный банк.\nГИБДД - 2,5% (не менее 25 руб., не более 1500 руб.)на окне картой, 1%  оплата картой через банкомат, 2% (не менее 10 руб, не более 2000 руб.) наличными в банкоматах, 1% онлайн и мобильный банк.\nРостелеком - 2,5% не менее 10 руб картой на окне/ 3%  мин 10,00 нал в терминале/ без %  картой в терминале.\nМобильная связь - 2,5% наличными через терминал, без % по карте банка.\n",reply_markup=keyboard_sber_mitishi1)
+
+    elif call.data == "moe_mitishi1":
+        bot.answer_callback_query(callback_query_id=call.id)
+        keyboard3_moe_mitishi1 = types.InlineKeyboardMarkup()
+        button = types.InlineKeyboardButton(text="Назад", callback_data=mitishi1)
+        keyboard3_moe_mitishi1.add(button)
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text="\nОтделения и терминлы МОЕ (1 офис 53 терминала.)\n Оплата наличными не принимается\nПод какой % принимают банкоматы, терминалы/ оплата в офисе картой\nМОЕ - Расчетный счет 6799-0,99%, Расчетный счет 6635-0%\nСвет - Наличными/карта - 1% (внешняя)\nГаз- не принимают\nГИБДД -3% не менее 30р.\nHРостелеком - до 99 руб. - 4,99 руб., от 100 руб -499% Мобильный Ростелеком: до 99 руб. - 4,99 руб., от 100 руб. - 4,99%\nМобильная связь - Наличными и картой: до 10 руб. - 5 руб., от 11 до 99 руб. - 5,99 руб., от 100 руб. - 5,99%\n",reply_markup=keyboard3_moe_mitishi1)
+
+
+
+
 
     if call.data == "luber":
         keyboard_luber = types.InlineKeyboardMarkup()
